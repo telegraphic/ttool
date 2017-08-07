@@ -84,7 +84,11 @@ The tool will do its best to parse the time as a string (using the `dateparse` m
 ./ttool.py now here berkeley 
 ```
 
+The terms `here`, `local` and `me` are special locations you can use for conversion from local time (where your computer is) to a different timezone.
+
 __Be careful if using vague statements like "now" that use your system clock__. If you want to know what the time is in zanzibar, type `now here zanzibar`, or `now local zanzibar`, as otherwise the code assumes the computer is in zanzibar, and your system clock will be wrong (unless you and your PC are, in fact, in zanzibar).
+
+#### What is the local time at location X?
 
 If you want to convert from your local timezone a shorthand is:
 
