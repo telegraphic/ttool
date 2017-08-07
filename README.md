@@ -84,7 +84,15 @@ The tool will do its best to parse the time as a string (using the `dateparse` m
 ./ttool.py now here berkeley 
 ```
 
-__Be careful if using vague statements like "now" that use your system clock__. If you want to know what the time is in zanzibar, type `now here zanzibar`, or `now local zanzibar`, as otherwise the code assumes the computer is in zanzibar, and your system clock will be wrong (unless you and your PC are, in fact, in zanzibar). 
+__Be careful if using vague statements like "now" that use your system clock__. If you want to know what the time is in zanzibar, type `now here zanzibar`, or `now local zanzibar`, as otherwise the code assumes the computer is in zanzibar, and your system clock will be wrong (unless you and your PC are, in fact, in zanzibar).
+
+If you want to convert from your local timezone a shorthand is:
+
+```
+./ttool.py now berkeley
+./ttool.py now here berkeley     <--- Identical output
+```
+
 
 
 ### Install requirements
