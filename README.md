@@ -81,7 +81,10 @@ The tool will do its best to parse the time as a string (using the `dateparse` m
 ```
 ./ttool.py "08:00 tomorrow" Sydney "San Francisco"
 ./ttool.py "2017-01-01 09:30" local Chicago
+./ttool.py now here berkeley 
 ```
+
+__Be careful if using vague statements like "now" that use your system clock__. If you want to know what the time is in zanzibar, type `now here zanzibar`, or `now local zanzibar`, as otherwise the code assumes the computer is in zanzibar, and your system clock will be wrong (unless you and your PC are, in fact, in zanzibar). 
 
 
 ### Install requirements
