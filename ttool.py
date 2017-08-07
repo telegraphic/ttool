@@ -66,8 +66,9 @@ def convert_time(tval, format_in, format_out='iso'):
 ## Simple conversions to UTC
 ###############
 
-decimal_fmts = ('mjd', 'jd', 'unix', 'jyear', 'gps', 'decimalyear', 'cxcsec', 'byear')
-string_fmts  = ('iso', 'isot', 'fits', 'byear_str', 'jyear_str')
+decimal_fmts  = ('mjd', 'jd', 'unix', 'jyear', 'gps', 'decimalyear', 'cxcsec', 'byear')
+string_fmts   = ('iso', 'isot', 'fits', 'byear_str', 'jyear_str')
+local_strings = ('local', 'here', 'me')
     
 is_format_conversion = False
 
@@ -132,8 +133,11 @@ else:
         return obs.sidereal_time()
 
     # Get the timezone for the input location
-    tz_in_str, place_in, lat_in, lng_in = get_timezone(loc_in_str)
-    tz_in       = pytz.timezone(tz_in_str)
+    if loc_in_str in local_strings:
+        tz_in = tzlocal.get_localzone()
+    else:
+        tz_in_str, place_in, lat_in, lng_in = get_timezone(loc_in_str)
+        tz_in       = pytz.timezone(tz_in_str)
 
     # Parse the date/time string
     # Catch HH:MM before attempting auto date parse
@@ -143,15 +147,17 @@ else:
         hh, mm = int(d['hr']), int(d['min'])
         # assume it's today's time
         now = datetime.now()
-        t     = datetime(now.year, now.month, now.day, hh, mm, tzinfo=pytz.utc)
+        t     = datetime(now.year, now.month, now.day, hh, mm)
+        t     = tz_in.localize(t)
     else:
         t = dateparser.parse(time_str)
-        tz_local = tzlocal.get_localzone()     # Need to attach local timezone!
-        t = tz_local.localize(t)
+        #tz_local = tzlocal.get_localzone()     # Need to attach local timezone!
+        t = tz_in.localize(t)
 
-    t_in  = t.astimezone(tz_in)
+        t_in  = t.astimezone(tz_in)
     print("Time:      %s" % t_in)
-    print("LST:       %s" % get_sidereal_time(lat_in, lng_in, t_in))
+    if not loc_in_str in local_strings:
+        print("LST:       %s" % get_sidereal_time(lat_in, lng_in, t_in))
     print("\n")
     
     ################
