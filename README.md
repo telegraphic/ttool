@@ -2,9 +2,10 @@
 Tool for converting between astronomical time formats and between timezones.
 
 This is a simple utility for:
-1) Converting between different time formats (e.g. julian date to UTC), 
+1) Converting between different time formats. For example, to convert from mjd (modified julian date) to regular ISO date, run `./ttool.py 57000 mjd iso`. 
 2) Doing timezone transformations between different cities / locations. The tool uses `geopy` to search for the location, 
-   and will display the latitude, longitude, and local sidereal time for the location.
+   and will display the latitude, longitude, and local sidereal time for the location. For example, to convert a local time 
+   in Sydney Australia to the local time in Berkeley California, run `./ttool.py "2017-08-01 20:00" Sydney Berkeley`.
 
 
 ### Converting time formats
