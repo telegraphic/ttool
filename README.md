@@ -7,19 +7,24 @@ This is a simple utility for:
    and will display the latitude, longitude, and local sidereal time for the location. For example, to convert a local time 
    in Sydney Australia to the local time in Berkeley California, run `./ttool.py "2017-08-01 20:00" Sydney Berkeley`.
 
+Install via
+
+```
+pip install git+https://github.com/telegraphic/ttool
+```
 
 ### Converting time formats
 
 For converting between different time formats, run:
 
 ```
-./ttool.py [time] [input_format] [output_format] [output_format2] ...
+ttool [time] [input_format] [output_format] [output_format2] ...
 ```
 
 Where you can have as many output formats as you like on the command line. For example:
 
 ```
-dan@hadouken:ttool$ ./ttool.py 2017-01-01 iso mjd jd
+dan@hadouken:ttool$ ttool 2017-01-01 iso mjd jd
              iso: 2017-01-01
              mjd: 57754.0
               jd: 2457754.5
@@ -54,7 +59,7 @@ The tool uses astropy, so the [supported output formats](http://docs.astropy.org
 For converting between different timezones, run:
 
 ```
-./ttool.py [TIME] [LOCATION] [LOCATION2] ...
+ttool [TIME] [LOCATION] [LOCATION2] ...
 ```
 
 For example, to convert 07:00AM at Berkeley (today) to Melbourne time:
