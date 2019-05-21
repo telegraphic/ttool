@@ -102,7 +102,8 @@ else:
     ###############
 
     # Load these at first run
-    G = geocoders.GoogleV3()
+    #G = geocoders.GoogleV3()
+    G = geocoders.Nominatim()
     W = tzwhere()
 
     def get_timezone(location_str, print_loc=True):
